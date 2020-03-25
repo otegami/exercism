@@ -1,15 +1,11 @@
 class Complement
-  DNATORNA = {
+  DNA_TO_RNA = {
     'G' => 'C',
     'C' => 'G',
     'T' => 'A',
     'A' => 'U'
   }
   def self.of_dna(dna)
-    rna = ''
-    dna.chars.each do |element|
-      rna += DNATORNA[element]
-    end
-    rna
+    dna.gsub(/[GCTA]/, DNA_TO_RNA)
   end
 end
