@@ -1,5 +1,5 @@
 class Acronym
   def self.abbreviate(string)
-    string.split(/\W+/).map { |word| word[/(^\w)/, 1].upcase }.join
+    string.scan(/\b\w/).join.upcase
   end
 end
