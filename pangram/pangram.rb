@@ -10,6 +10,5 @@ class Pangram
     ('a'..'z').each do |char|
        return false if !chars.any?(char)
     end
-    true
   end
 end
