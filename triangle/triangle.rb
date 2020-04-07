@@ -6,26 +6,27 @@ class Triangle
   end
 
   def equilateral?
-    @equilateral ||= property.size == 1 if triangle?
+    sameLengthSides == 3 if inequality?
   end
 
   def isosceles?
-    @isosceles ||= property.size <= 2 if triangle?
+    sameLengthSides >= 2 if inequality?
   end
 
   def scalene?
-    @scalene ||= property.size == 3 if triangle?
+    sameLengthSides == 0 if inequality?
   end
 
   def degenerate?
-    @degenerate ||= sides[2] == sides[0] + sides[1]
-  end
-  
-  def property
-    sides.uniqs
+    sides[2] == sides[0] + sides[1]
   end
 
-  def triangle?
-    ( sides[0] - sides[1] ).abs < sides[2] && sides[2] < sides[0] + sides[1]
+  def sameLengthSides
+    result = sides.slice_when { |i, j| i == j }.to_a.size
+    result == 1 ? 0 : result
+  end
+
+  def inequality?
+    sides[2] < sides[0] + sides[1]
   end
 end

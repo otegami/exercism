@@ -1,8 +1,12 @@
 class Matrix
-  attr_reader :rows
+  attr_reader :matrix
 
-  def initialize(rows)
-    @rows = rows.split(/\n/).map { |row| row.split.map(&:to_i) }
+  def initialize(matrix)
+    @matrix = matrix
+  end
+
+  def rows
+    @rows ||= matrix.lines.map { |row| row.split.map(&:to_i) }
   end
 
   def columns
