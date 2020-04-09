@@ -4,18 +4,18 @@ class SumOfMultiples
   attr_reader :multiples
 
   def initialize(*numbers)
-    @multiples  = numbers.nil? ? 0 : numbers
+    @multiples  = numbers
   end
 
   def to(upper_limit_number)
-    get_all_of_multiples(upper_limit_number).nil? ? 0 : get_all_of_multiples(upper_limit_number).sum
+    get_all_multiples_of_numbers(upper_limit_number).reduce(0, :+)
   end
 
-  def get_all_of_multiples(upper_limit_number)
-    @allMultiples ||= multiples.map { |num| multiple_of(num, upper_limit_number) }.reduce(:+).to_a
+  def get_all_multiples_of_numbers(upper_limit_number)
+    (1...upper_limit_number).select { |number| check_multiple?(number) }
   end
 
-  def multiple_of(number, upper_limit_number)
-    Set.new( (1...to_number).select { |n| n % number == 0 } )
+  def check_multiple?(number)
+    multiples.any? { |num| number % num == 0 }
   end
 end
