@@ -7,10 +7,12 @@ class Series
 
   def slices(number)
     raise ArgumentError if series.length < number || number < 0
-    be_digits.each_cons(number).map { |digit| digit.join }
+    the_digits.each_cons(number).map { |digit| digit.join }
   end
 
-  def be_digits
+  private
+  
+  def the_digits
     series.chars
   end
 end
