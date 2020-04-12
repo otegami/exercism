@@ -9,9 +9,8 @@ class Series
     raise ArgumentError if series.length < number || number < 0
     the_digits.each_cons(number).map { |digit| digit.join }
   end
-
-  private
   
+  private
   def the_digits
     series.chars
   end

@@ -92,6 +92,24 @@ class SeriesTest < Minitest::Test
     end
   end
 
+  def test_simple_slice_by_negative_number
+    # skip
+    series = Series.new('01234')
+    assert_raises ArgumentError do
+      series.slices(-6)
+    end
+  end
+
+  def test_more_complicated_slice_by_nagative_number
+    # skip
+    slice_string = '01032987583'
+
+    series = Series.new(slice_string)
+    assert_raises ArgumentError do
+      series.slices(slice_string.length * -1)
+    end
+  end
+
   def test_sequential_slices
     # skip
     series = Series.new('1234')
