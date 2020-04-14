@@ -1,18 +1,17 @@
-require 'pry'
-
 class Phrase
-  attr_reader :words
+  attr_reader :phrase
 
-  def initialize(words)
-    @words = words.split(/[ , \,, \n]/)
+  def initialize(phrase)
+    @phrase = phrase
   end
 
   def word_count
-    words.each_with_object({}){ |word, count| include?(word, count) }
+    words.each_with_object(Hash.new(0)){ |word, count| count[word] += 1 }
   end
 
   private
-  def include?(word, hash)
-    hash.has_key?(word) ? hash[word] += 1 : hash[word] = 1
+
+  def words
+    phrase.downcase.scan(/\b[\w']+\b/)
   end
 end
