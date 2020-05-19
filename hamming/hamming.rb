@@ -1,11 +1,11 @@
 module Hamming
-  def self.compute(*dna_data)
-    data1, data2 = dna_data.map(&:chars)
-
-    raise ArgumentError if data1.length != data2.length
-
-    data1.each_with_index.inject(0) do |count, (element, ind)|
-      element != data2[ind] ? count += 1 : count += 0
+  def self.compute(strand1, strand2)
+    if strand1.length == strand2.length
+      strand1.each_char.with_index.count do |nucleotide, index|
+        nucleotide != strand2[index]
+      end
+    else
+      raise ArgumentError
     end
   end
 end
